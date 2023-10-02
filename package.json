@@ -1,0 +1,14 @@
+{
+  "name": "mern_eshop_app",
+  "version": "1.0.0",
+  "description": "mern eshop app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "author": "Antonio",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
