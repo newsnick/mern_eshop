@@ -24,6 +24,7 @@
     "cliui": "^8.0.1",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
+    "colors": "^1.4.0",
     "concat-map": "^0.0.1",
     "concurrently": "^8.2.1",
     "content-disposition": "^0.5.4",
@@ -126,7 +127,9 @@
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "author": "Antonio",
   "license": "MIT",
