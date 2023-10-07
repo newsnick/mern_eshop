@@ -4,7 +4,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getUserDetails } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
 
 const ProfileScreen = ({ history }) => {
   const navigate = useNavigate()
@@ -18,9 +18,26 @@ const ProfileScreen = ({ history }) => {
 
   const userDetails = useSelector((state) => state.userDetails)
   const { loading, error, user } = userDetails
+  console.log(userDetails)
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const { success } = userUpdateProfile
+
+  //   useEffect(() => {
+  //     if (!userInfo) {
+  //       navigate('/login')
+  //     } else {
+  //       if (!user.name) {
+  //         dispatch(getUserDetails('profile'))
+  //       } else {
+  //         setName(user.name)
+  //         setEmail(user.email)
+  //       }
+  //     }
+  //   }, [dispatch, history, userInfo, user, navigate])
 
   useEffect(() => {
     if (!userInfo) {
@@ -29,8 +46,10 @@ const ProfileScreen = ({ history }) => {
       if (!user.name) {
         dispatch(getUserDetails('profile'))
       } else {
-        setName(user.name)
-        setEmail(user.email)
+        if (user && user.name) {
+          setName(user.name)
+          setEmail(user.email)
+        }
       }
     }
   }, [dispatch, history, userInfo, user, navigate])
@@ -40,15 +59,17 @@ const ProfileScreen = ({ history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      // DISPATCH UPDATE PROFILE
+      dispatch(updateUserProfile({ id: user._id, name, email, password }))
     }
   }
+
   return (
     <Row>
       <Col md={4}>
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error} </Message>}
+        {success && <Message variant='success'>Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId='name'>
