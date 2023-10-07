@@ -100,7 +100,7 @@ const LoginScreen = ({ history }) => {
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label className='mt-2 mb-0'>Email Address</Form.Label>
           <Form.Control
             type='email'
             placeholder='Enter email'
@@ -109,7 +109,7 @@ const LoginScreen = ({ history }) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
+          <Form.Label className='mt-2 mb-0'>Password</Form.Label>
           <Form.Control
             type='password'
             placeholder='Enter password'
@@ -118,13 +118,13 @@ const LoginScreen = ({ history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='primary mt-3'>
           Sign In
         </Button>
       </Form>
       <Row className='py-3'>
         <Col>
-          New Customer?
+          <span>New Customer? </span>
           <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
             Register
           </Link>
