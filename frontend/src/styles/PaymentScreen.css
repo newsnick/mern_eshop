@@ -1,0 +1,4 @@
+.blue-radio .form-check-input:checked {
+  background-color: royalblue;
+  border-color: royalblue;
+}
