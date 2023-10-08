@@ -34,8 +34,11 @@ const CartScreen = ({ match, history }) => {
   // const checkoutHandler = () => {
   //   history.push('/login?redirect=shipping')
   // }
+  // const checkoutHandler = () => {
+  //   navigate(`/login?redirect=shipping`)
+  // }
   const checkoutHandler = () => {
-    navigate(`/login?redirect=shipping`)
+    navigate(`/shipping`)
   }
 
   return (
