@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,6 +23,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
+  const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -54,6 +56,37 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }, [dispatch, productId, product, successUpdate, navigate])
 
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post('/api/upload', formData, config)
+
+      // Determine base URL dynamically based on environment
+      const baseURL =
+        process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000'
+
+      // Remove trailing slash from baseURL and leading slash from data if present
+      const formattedBaseURL = baseURL.replace(/\/$/, '')
+      const formattedImage = data.replace(/^\//, '')
+
+      setImage(`${formattedBaseURL}/${formattedImage}`)
+      setUploading(false)
+    } catch (error) {
+      console.error(error)
+      setUploading(false)
+    }
+  }
+
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
@@ -85,63 +118,86 @@ const ProductEditScreen = ({ match, history }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name'>
+            {/* <Form.Group controlId='name'> */}
+            <Form.Group>
               <Form.Label className='mt-2 mb-0'>Name</Form.Label>
+              {/* <Form.Control
+                type='name'
+                placeholder='Enter name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              ></Form.Control> */}
               <Form.Control
+                id='name' // Remove controlId prop since id is specified
                 type='name'
                 placeholder='Enter name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='price'>
+            <Form.Group>
               <Form.Label className='mt-2 mb-0'>Price</Form.Label>
               <Form.Control
+                id='price'
                 type='number'
                 placeholder='Enter price'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='image'>
+            <Form.Group>
               <Form.Label className='mt-2 mb-0'>Image</Form.Label>
               <Form.Control
+                id='image'
                 type='text'
-                placeholder='Enter  image url'
+                placeholder='Enter image url'
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
+              <Form.Control
+                type='file'
+                id='image-file'
+                label='Choose File'
+                custom='true'
+                onChange={uploadFileHandler}
+              ></Form.Control>
+
+              {uploading && <Loader />}
             </Form.Group>
-            <Form.Group controlId='brand'>
+            <Form.Group>
               <Form.Label className='mt-2 mb-0'>Brand</Form.Label>
               <Form.Control
+                id='brand'
                 type='text'
                 placeholder='Enter brand'
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='countInStock'>
+            <Form.Group>
               <Form.Label className='mt-2 mb-0'>Count In Stock</Form.Label>
               <Form.Control
+                id='countInStock'
                 type='number'
                 placeholder='Enter countInStock'
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='category'>
+            <Form.Group>
               <Form.Label className='mt-2 mb-0'>Category</Form.Label>
               <Form.Control
+                id='category'
                 type='text'
                 placeholder='Enter category'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='description'>
+            <Form.Group>
               <Form.Label className='mt-2 mb-0'>Description</Form.Label>
               <Form.Control
+                id='description'
                 type='text'
                 placeholder='Enter description'
                 value={description}
