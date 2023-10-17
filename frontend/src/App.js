@@ -43,7 +43,7 @@ const App = () => {
               element={<ProductEditScreen />}
             />
             <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
-
+            <Route path='/search/:keyword' element={<HomeScreen />} />
             <Route path='/' element={<HomeScreen />} exact />
           </Routes>
         </Container>
