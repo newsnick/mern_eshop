@@ -10,9 +10,9 @@ const CartScreen = ({ match, history }) => {
   const { id } = useParams()
   const productId = id
 
-  // const qty = location.search ? Number(location.search.split('=')[1]) : 1
   const location = useLocation()
 
+  // const qty = location.search ? Number(location.search.split('=')[1]) : 1
   const qty = parseInt(new URLSearchParams(location.search).get('qty')) || 1
 
   const dispatch = useDispatch()
@@ -31,9 +31,6 @@ const CartScreen = ({ match, history }) => {
     dispatch(removeFromCart(id))
   }
 
-  // const checkoutHandler = () => {
-  //   history.push('/login?redirect=shipping')
-  // }
   // const checkoutHandler = () => {
   //   navigate(`/login?redirect=shipping`)
   // }

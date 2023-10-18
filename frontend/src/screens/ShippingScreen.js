@@ -9,11 +9,8 @@ import { saveShippingAddress } from '../actions/cartActions'
 const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
-
-  //   const [address, setAddress] = useState(shippingAddress.address)
-  //   const [city, setCity] = useState(shippingAddress.city)
-  //   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-  //   const [country, setCountry] = useState(shippingAddress.country)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const initialAddress = shippingAddress?.address || ''
   const initialCity = shippingAddress?.city || ''
@@ -24,10 +21,6 @@ const ShippingScreen = ({ history }) => {
   const [city, setCity] = useState(initialCity)
   const [postalCode, setPostalCode] = useState(initialPostalCode)
   const [country, setCountry] = useState(initialCountry)
-
-  const navigate = useNavigate()
-
-  const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault()

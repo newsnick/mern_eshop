@@ -29,11 +29,6 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            {/* <Routes>
-              <Route
-                render={({ history }) => <SearchBox history={history} />}
-              ></Route>
-            </Routes> */}
             <SearchBox />
             <Nav className='ms-auto'>
               <LinkContainer to='/cart'>

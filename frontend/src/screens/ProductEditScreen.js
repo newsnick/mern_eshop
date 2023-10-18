@@ -118,15 +118,10 @@ const ProductEditScreen = ({ match, history }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
-            {/* <Form.Group controlId='name'> */}
+        
             <Form.Group>
               <Form.Label className='mt-2 mb-0'>Name</Form.Label>
-              {/* <Form.Control
-                type='name'
-                placeholder='Enter name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control> */}
+           
               <Form.Control
                 id='name' // Remove controlId prop since id is specified
                 type='name'

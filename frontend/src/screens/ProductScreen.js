@@ -24,7 +24,7 @@ const ProductScreen = ({ match }) => {
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
-  console.log('Product:', product) // Log the product object received from Redux store
+  console.log('Product:', product)
 
   const productReviewCreate = useSelector((state) => state.productReviewCreate)
   const { error: errorProductReview, success: successProductReview } =
@@ -32,10 +32,6 @@ const ProductScreen = ({ match }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
-
-  // useEffect(() => {
-  //   dispatch(listProductDetails(match.params.id))
-  // }, [dispatch, match])
 
   useEffect(() => {
     if (successProductReview) {
@@ -46,10 +42,6 @@ const ProductScreen = ({ match }) => {
     }
     dispatch(listProductDetails(id))
   }, [dispatch, id, successProductReview])
-
-  // const addToCartHandler = () => {
-  //   history.push(`/cart/${match.params.id}?qty=${qty}`)
-  // }
 
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}`)

@@ -33,19 +33,6 @@ const ProfileScreen = ({ history }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
   console.log(orderListMy)
 
-  //   useEffect(() => {
-  //     if (!userInfo) {
-  //       navigate('/login')
-  //     } else {
-  //       if (!user.name) {
-  //         dispatch(getUserDetails('profile'))
-  //       } else {
-  //         setName(user.name)
-  //         setEmail(user.email)
-  //       }
-  //     }
-  //   }, [dispatch, history, userInfo, user, navigate])
-
   useEffect(() => {
     if (!userInfo) {
       navigate('/login')

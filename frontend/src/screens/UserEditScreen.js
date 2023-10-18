@@ -14,11 +14,11 @@ const UserEditScreen = ({ match, history }) => {
   const userId = id
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
-
-  const dispatch = useDispatch()
 
   const userDetails = useSelector((state) => state.userDetails)
   const { loading, error, user } = userDetails
