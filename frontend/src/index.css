@@ -22,7 +22,7 @@ h1 {
 
 /* carousel */
 
-.carousel-item-next,
+/* .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
   display: flex;
@@ -46,4 +46,66 @@ h1 {
 
 .carousel a {
   margin: 0 auto;
+} */
+
+/*//
+//
+//
+//
+*/
+.product-description {
+  font-weight: lighter;
+  color: darkgray;
+}
+
+.product-carousel-container {
+  margin: 20px;
+}
+
+/* .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 50%;
+  height: 360px;
+  left: 73%;
+} */
+.carousel-caption {
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 50%;
+  height: 360px;
+  left: 73%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-indicators {
+  margin-left: 50%;
+  margin-right: 5%;
+}
+
+.product-name {
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.carousel-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.carousel-image {
+  height: 400px;
 }
