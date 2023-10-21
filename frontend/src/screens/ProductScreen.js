@@ -14,7 +14,7 @@ import Meta from '../components/Meta'
 
 const ProductScreen = ({ match }) => {
   const navigate = useNavigate()
-  const [qty, setQty] = useState(1)
+  const [qty, setQty] = useState(0)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
   const dispatch = useDispatch()
@@ -43,8 +43,17 @@ const ProductScreen = ({ match }) => {
     dispatch(listProductDetails(id))
   }, [dispatch, id, successProductReview])
 
+  // const addToCartHandler = () => {
+  //   navigate(`/cart/${id}?qty=${qty}`)
+  // }
+
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${qty}`)
+    if (!userInfo) {
+      // Redirect to the login page if user is not logged in
+      navigate('/login')
+    } else {
+      navigate(`/cart/${id}?qty=${qty}`)
+    }
   }
 
   const submitHandler = (e) => {

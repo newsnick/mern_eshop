@@ -12,6 +12,9 @@ const CartScreen = ({ match, history }) => {
 
   const location = useLocation()
 
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   // const qty = location.search ? Number(location.search.split('=')[1]) : 1
   const qty = parseInt(new URLSearchParams(location.search).get('qty')) || 1
 
@@ -32,10 +35,15 @@ const CartScreen = ({ match, history }) => {
   }
 
   // const checkoutHandler = () => {
-  //   navigate(`/login?redirect=shipping`)
+  //   navigate(`/shipping`)
   // }
   const checkoutHandler = () => {
-    navigate(`/shipping`)
+    if (!userInfo) {
+      // Redirect to the login page if user is not logged in
+      navigate('/login')
+    } else {
+      navigate(`/shipping`)
+    }
   }
 
   return (

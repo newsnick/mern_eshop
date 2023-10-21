@@ -42,7 +42,7 @@ const ProductEditScreen = ({ match, history }) => {
       dispatch({ type: PRODUCT_UPDATE_RESET })
       navigate('/admin/productList')
     } else {
-      if (!product.name || product._id !== productId) {
+      if (!product || !product.name || product._id !== productId) {
         dispatch(listProductDetails(productId))
       } else {
         setName(product.name)
@@ -118,10 +118,9 @@ const ProductEditScreen = ({ match, history }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
-        
             <Form.Group>
               <Form.Label className='mt-2 mb-0'>Name</Form.Label>
-           
+
               <Form.Control
                 id='name' // Remove controlId prop since id is specified
                 type='name'
