@@ -4273,6 +4273,7 @@ fieldset:disabled .btn {
 .card-img-bottom,
 .card-img-top {
   width: 100%;
+
 }
 .card-group > .card {
   margin-bottom: var(--bs-card-group-margin);
