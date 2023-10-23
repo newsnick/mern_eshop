@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'
-import { addToCart, removeFromCart } from '../actions/cartActions'
+import {
+  addToCart,
+  removeFromCart,
+  updateCartItemCount,
+} from '../actions/cartActions'
+import '../styles/CartScreen.css'
 
 const CartScreen = ({ match, history }) => {
   const navigate = useNavigate()
@@ -23,6 +28,13 @@ const CartScreen = ({ match, history }) => {
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
   console.log(cartItems)
+
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty))
+      dispatch(updateCartItemCount())
+    }
+  }, [dispatch, productId, qty])
 
   useEffect(() => {
     if (productId) {

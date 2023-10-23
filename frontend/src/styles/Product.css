@@ -3,6 +3,7 @@
 }
 .card {
   height: 410px;
+  width: 275px;
 }
 
 .img-fluid {
@@ -16,6 +17,7 @@
   }
   .card {
     height: unset;
+    width: unset;
   }
   .img-fluid {
     max-width: 100%;

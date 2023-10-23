@@ -4,6 +4,7 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
+  UPDATE_CART_ITEM_COUNT,
 } from '../constants/cartConstants'
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
@@ -22,6 +23,9 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   })
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+
+  // Update cart item count
+  dispatch(updateCartItemCount())
 }
 
 export const removeFromCart = (id) => (dispatch, getState) => {
@@ -31,6 +35,9 @@ export const removeFromCart = (id) => (dispatch, getState) => {
   })
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+
+  // Update cart item count
+  dispatch(updateCartItemCount())
 }
 
 export const saveShippingAddress = (data) => (dispatch) => {
@@ -49,4 +56,15 @@ export const savePaymentMethod = (data) => (dispatch) => {
   })
 
   localStorage.setItem('paymentMethod', JSON.stringify(data))
+}
+
+export const updateCartItemCount = () => (dispatch, getState) => {
+  const {
+    cart: { cartItems },
+  } = getState()
+  const itemCount = cartItems.reduce((acc, item) => acc + item.qty, 0)
+  dispatch({
+    type: UPDATE_CART_ITEM_COUNT,
+    payload: itemCount,
+  })
 }
