@@ -25,16 +25,16 @@ FROM node:18
 WORKDIR /app
 
 # Copy the backend package files
-COPY ./package*.json ./backend/
+COPY ./package*.json .
 
 # Install backend dependencies
-RUN cd backend && npm install --production
+RUN NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend && npm run build --prefix frontend
 
 # Copy the frontend package files
 COPY ./frontend/package*.json ./frontend/
 
 # Install frontend dependencies
-RUN cd frontend && npm install --production
+# RUN cd frontend && npm install --production
 
 # Copy the application files into the working directory
 COPY . .
