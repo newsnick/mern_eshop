@@ -141,7 +141,9 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend && npm run build --prefix frontend"
+    // "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend && npm run build --prefix frontend",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend",
+    "render-runbuild": "npm run build --prefix frontend"
   },
   "author": "Antonio",
   "license": "MIT",
