@@ -13,8 +13,8 @@ RUN NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend
 # Build the React application
 RUN npm run build --prefix frontend
 
-# Expose port 5000
-EXPOSE 5000
+# Expose port 3000
+EXPOSE 3000
 
 # Define the entry point for the container
 CMD ["npm", "start"]
