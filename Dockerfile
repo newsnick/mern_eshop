@@ -13,8 +13,10 @@ COPY . /app
 # Build the React application
 RUN npm run render-postbuild
 
+RUN npm run dev 
+
 # Expose port 3000
 EXPOSE 3000
 
 # Define the entry point for the container
-CMD ["node", "backend/server.js"]
+CMD ["npm", "run dev"]
