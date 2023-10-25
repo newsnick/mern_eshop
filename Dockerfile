@@ -7,11 +7,11 @@ WORKDIR /app
 # Copy the application files into the working directory
 COPY . /app
 
-# Install the application dependencies
-RUN npm run back4app-postbuild
+# Install the application dependencies for frontend
+RUN NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend
 
 # Build the React application
-RUN npm run build
+RUN npm run build --prefix frontend
 
 # Expose port 3000
 EXPOSE 3000
