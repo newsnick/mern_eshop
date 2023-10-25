@@ -25,7 +25,7 @@ FROM node:18
 WORKDIR /app
 
 # Copy the backend package files
-COPY ./backend/package*.json ./backend/
+COPY ./package*.json ./backend/
 
 # Install backend dependencies
 RUN cd backend && npm install --production
