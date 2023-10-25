@@ -8,13 +8,13 @@ WORKDIR /app
 COPY . /app
 
 # Install the application dependencies for frontend
-RUN NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend
+# RUN NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend
 
 # Build the React application
-RUN npm run build --prefix frontend
+RUN npm run render-postbuild
 
 # Expose port 3000
-EXPOSE 3001
+EXPOSE 3000
 
 # Define the entry point for the container
 CMD ["node", "backend/server.js"]
