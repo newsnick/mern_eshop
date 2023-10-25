@@ -22,7 +22,7 @@
 FROM node:18
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /
 
 # Copy the backend package files
 COPY ./package*.json .
