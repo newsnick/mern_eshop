@@ -25,7 +25,13 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(compression())
 
-app.use(cors())
+app.use(
+  cors({
+    origin: ['https://mern-eshop-api.vercel.app'],
+    methods: ['POST', 'GET'],
+    credentials: true,
+  })
+)
 
 app.use(express.json())
 
