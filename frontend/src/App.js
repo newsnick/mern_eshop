@@ -21,27 +21,26 @@ import ProductEditScreen from './screens/ProductEditScreen.js'
 import OrderListScreen from './screens/OrderListScreen.js'
 
 const App = () => {
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  axios.defaults.withCredentials = true
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    axios
-      .post('https://mern-eshop-api.vercel.app/register', {
-        name,
-        email,
-        password,
-      })
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err))
-  }
+  // const [name, setName] = useState()
+  // const [email, setEmail] = useState()
+  // const [password, setPassword] = useState()
+  // axios.defaults.withCredentials = true
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   axios
+  //     .post('https://mern-eshop-api.vercel.app/register', {
+  //       name,
+  //       email,
+  //       password,
+  //     })
+  //     .then((result) => console.log(result))
+  //     .catch((err) => console.log(err))
+  // }
   return (
     <Router>
       <Header />
       <main className='py-3'>
         <Container>
-          <form onSubmit={handleSubmit}></form>
           <Routes>
             <Route path='/order/:id' element={<OrderScreen />} />
             <Route path='/shipping' element={<ShippingScreen />} />
