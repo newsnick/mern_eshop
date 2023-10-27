@@ -27,7 +27,7 @@ app.use(compression())
 
 app.use(
   cors({
-    origin: ['https://mern-eshop-api.vercel.app/'],
+    origin: ['https://mern-eshop-frontend.vercel.app'],
     methods: ['POST', 'GET'],
     credentials: true,
   })
