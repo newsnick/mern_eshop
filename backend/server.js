@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import cors from 'cors'
 import path from 'path'
+import cors from 'cors'
 import morgan from 'morgan'
 import colors from 'colors'
 import serveStatic from 'serve-static'
@@ -15,23 +15,17 @@ import compression from 'compression'
 
 dotenv.config()
 
+const app = express()
+
 connectDB()
 
-const app = express()
+app.use(cors())
+app.use(compression())
+
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
-
-app.use(compression())
-
-app.use(
-  cors({
-    origin: ['https://mern-eshop-frontend.vercel.app'],
-    methods: ['POST', 'GET'],
-    credentials: true,
-  })
-)
 
 app.use(express.json())
 
@@ -43,6 +37,11 @@ app.use('/api/upload', uploadRoutes)
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 )
+
+app.get("/", (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true");
+  res.send("API is running..");
+});
 
 const __dirname = path.resolve()
 app.use('/uploads', serveStatic(path.join(__dirname, 'uploads')))
